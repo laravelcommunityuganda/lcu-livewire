@@ -18,7 +18,7 @@ class EventFactory extends Factory
         $is_online = fake()->randomElement([true, false]);
         $image = fake()->imageUrl();
         return [
-            'user_id' => User::where('username', 'admin')->first()->id,
+            'user_id' => User::where('email', 'admin@example.com')->first()->id,
             'title' => $name,
             'slug' => Str::slug($name),
             'description' => fake()->sentence,

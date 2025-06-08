@@ -16,7 +16,7 @@ class ResourceFactory extends Factory
         $name = $this->faker->unique()
             ->words(fake()->numberBetween(1, 3), true);
         return [
-            'user_id' => User::where('username', 'admin')->first()->id,
+            'user_id' => User::where('email', 'admin@example.com')->first()->id,
             'title' => $name,
             'slug' => Str::slug($name),
             'description' => $this->faker->sentence,
