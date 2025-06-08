@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
             $table->enum('role', array_column(UserRolesEnum::cases(), 'value'))
                 ->default(UserRolesEnum::Member->value);
             $table->string('avatar')->nullable();
