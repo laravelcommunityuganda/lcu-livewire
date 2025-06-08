@@ -27,8 +27,12 @@ return new class extends Migration
             $table->boolean('is_active')->default(true);
             $table->boolean('is_banned')->default(false);
             $table->timestamp('email_verified_at')->nullable();
+            $table->index(['name', 'email']);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
+            $table->innoDb();
+
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
