@@ -14,7 +14,7 @@ class LcmJobSeeder extends Seeder
     public function run(): void
     {
         LcmJob::factory()
-            ->count(10)
+            ->count(100)
             ->create();
     }
 }

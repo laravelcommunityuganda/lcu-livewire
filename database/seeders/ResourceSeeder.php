@@ -11,7 +11,7 @@ class ResourceSeeder extends Seeder
     public function run(): void
     {
         Resource::factory()
-            ->count(10)
+            ->count(100)
             ->create();
     }
 }
