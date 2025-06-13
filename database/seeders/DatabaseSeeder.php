@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(ForumSeeder::class);
-        $this->call(LcmJObSeeder::class);
+        $this->call(LcmJobSeeder::class);
         $this->call(ResourceSeeder::class);
         $this->call(EventSeeder::class);
     }
