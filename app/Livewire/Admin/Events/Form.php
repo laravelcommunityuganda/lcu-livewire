@@ -15,7 +15,6 @@ class Form extends Component
     public Event $event;
     public $image;
     public $isUploading = false;
-    public $organizers = [];
 
     protected $rules = [
         'event.user_id' => 'required|exists:users,id',
@@ -38,7 +37,6 @@ class Form extends Component
     public function mount(Event $event)
     {
         $this->event = $event ?? new Event();
-        $this->organizers = User::whereIn('role', ['admin', 'organizer'])->get();
 
         if (!$this->event->exists) {
             $this->event->user_id = Auth::id();
@@ -75,6 +73,6 @@ class Form extends Component
     public function render()
     {
         return view('livewire.admin.events.form')
-            ->layout('compents.layouts.custom');
+            ->layout('components.layouts.custom');
     }
 }

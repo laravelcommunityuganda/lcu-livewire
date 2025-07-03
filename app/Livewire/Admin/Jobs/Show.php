@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Livewire\Admin\Forums;
+namespace App\Livewire\Admin\Jobs;
 
 use Livewire\Component;
 
-class Form extends Component
+class Show extends Component
 {
     public function render()
     {
-        return view('livewire.admin.forums.form')
+        return view('livewire.admin.jobs.show')
             ->layout('components.layouts.custom');
     }
 }

@@ -24,7 +24,7 @@
                         Events
                     </x-core.nav-link>
                     <x-core.nav-link href="{{ route('admin.resources.index') }}"
-                        :active="request()->routeIs('resources.index')">
+                        :active="request()->routeIs('admin.resources.index')">
                         Resources
                     </x-core.nav-link>
                     <x-core.nav-link href="{{ route('admin.jobs.index') }}"

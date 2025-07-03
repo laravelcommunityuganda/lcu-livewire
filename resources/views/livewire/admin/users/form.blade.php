@@ -5,12 +5,12 @@
         <x-core.admin.nav-bar />
     @endsection
     <x-core.container>
-        @dd($user)
+
         <div class="flex items-center justify-between mr-8 mt-4">
             <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
                 {{ $isEdit ? 'Edit User' : 'Create User' }}
             </h2>
-            <a href="{{ route('admin.users.index') }}"
+            <a href="{{ route('admin.users.index') }}" wire:navigate
                 class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                 <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">

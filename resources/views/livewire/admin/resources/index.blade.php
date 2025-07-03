@@ -1,6 +1,6 @@
 <div>
-    <x-slot:title>Admin / Posts </x-slot:title>
-    <x-core.header>Admin / Posts </x-core.header>
+    <x-slot:title>Admin / Resources </x-slot:title>
+    <x-core.header>Admin / Resources </x-core.header>
 
     @section('nav-bar')
         <x-core.admin.nav-bar />

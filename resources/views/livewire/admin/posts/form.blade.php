@@ -1,3 +1,14 @@
 <div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
+    <x-slot:title>Admin / Create Post </x-slot:title>
+    <x-core.header>Admin / Create Post </x-core.header>
+
+    @section('nav-bar')
+        <x-core.admin.nav-bar />
+    @endsection
+
+    <x-core.container>
+
+        {{-- Codes goes here --}}
+
+    </x-core.container>
 </div>

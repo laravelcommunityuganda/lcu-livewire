@@ -21,7 +21,7 @@ class Form extends Component
     public $is_active = true;
     public $is_banned = false;
 
-    public function mount($id = null)
+    public function mount(?int $id = null)
     {
         if ($id) {
             $this->user = User::findOrFail($id);
@@ -67,7 +67,7 @@ class Form extends Component
             session()->flash('success', 'User created successfully.');
         }
 
-        return redirect()->route('admin.users.index');
+        return $this->redirect(route('admin.users.index'), navigate: true);
     }
 
     public function render()

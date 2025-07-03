@@ -90,7 +90,6 @@ class Index extends Component
                 })
                 ->orderBy($this->sortField, $this->sortDirection)
                 ->paginate($this->perPage),
-        ])
-            ->layout('components.layouts.custom');
+        ])->layout('components.layouts.custom');
     }
 }

@@ -25,9 +25,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // ->middleware(['can:admin'])
         ->group(function () {
 
-            Route::get('/', function () {
-                return view('admin.dashboard');
-            })->name('admin.dashboard');
+            Route::get('/', \App\Livewire\Admin\Dashboard\Index::class)->name('admin.dashboard');
 
             // Users
             Route::get('/users', \App\Livewire\Admin\Users\Index::class)->name('admin.users.index');
@@ -49,32 +47,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/posts', \App\Livewire\Admin\Posts\Index::class)->name('admin.posts.index');
             Route::get('/posts/create', \App\Livewire\Admin\Posts\Form::class)->name('admin.posts.create');
             Route::get('/posts/{post}/edit', \App\Livewire\Admin\Posts\Form::class)->name('admin.posts.edit');
+            Route::get('/posts/{post}', \App\Livewire\Admin\Posts\Show::class)->name('admin.posts.show');
 
             // // Categories
             Route::get('/categories', \App\Livewire\Admin\Categories\Index::class)->name('admin.categories.index');
             Route::get('/categories/create', \App\Livewire\Admin\Categories\Form::class)->name('admin.categories.create');
             Route::get('/categories/{category}/edit', \App\Livewire\Admin\Categories\Form::class)->name('admin.categories.edit');
 
-            // Route::get('/', action: [DashboardController::class, 'index'])->name('admin.dashboard');
+            // Resourses
+            Route::get('/resources', \App\Livewire\Admin\Resources\Index::class)->name('admin.resources.index');
+            Route::get('/resources/create', \App\Livewire\Admin\Resources\Form::class)->name('admin.resources.create');
+            Route::get('/resources/{resource}/edit', \App\Livewire\Admin\Resources\Form::class)->name('admin.resources.edit');
+            Route::get('/resources/{resource}', \App\Livewire\Admin\Resources\Show::class)->name('admin.resources.show');
 
-            // Route::resource('users', UserController::class)
-            //     ->names(['create' => 'admin.users.create', 'index' => 'admin.users.index', 'edit' => 'admin.users.edit', 'store' => 'admin.users.store']);
+            // Jobs
+            Route::get('/jobs', \App\Livewire\Admin\Jobs\Index::class)->name('admin.jobs.index');
+            Route::get('/jobs/create', \App\Livewire\Admin\Jobs\Form::class)->name('admin.jobs.create');
+            Route::get('/jobs/{job}/edit', \App\Livewire\Admin\Jobs\Form::class)->name('admin.jobs.edit');
+            Route::get('/jobs/{job}', \App\Livewire\Admin\Jobs\Show::class)->name('admin.jobs.show');
 
-            // Route::resource('events', EventController::class)
-            //     ->names(['create' => 'admin.events.create', 'index' => 'admin.events.index', 'edit' => 'admin.events.edit', 'store' => 'admin.events.store']);
-
-
-            Route::resource('resources', ResourceController::class)
-                ->names(['create' => 'admin.resources.create', 'index' => 'admin.resources.index', 'edit' => 'admin.resources.edit', 'store' => 'admin.resources.store']);
-
-            Route::resource('jobs', LcuJobController::class)
-                ->names(['create' => 'admin.jobs.create', 'index' => 'admin.jobs.index', 'edit' => 'admin.jobs.edit', 'store' => 'admin.jobs.store']);
-
-            // Route::resource('forums', ForumController::class)
-            //     ->names(['create' => 'admin.forums.create', 'index' => 'admin.forums.index', 'edit' => 'admin.forums.edit', 'store' => 'admin.forums.store']);
-
-            // Route::resource('posts', PostController::class)
-            //     ->names(['create' => 'admin.posts.create', 'index' => 'admin.posts.index', 'edit' => 'admin.posts.edit', 'store' => 'admin.posts.store']);
         });
     // Post
     Route::resource('posts', PostController::class)

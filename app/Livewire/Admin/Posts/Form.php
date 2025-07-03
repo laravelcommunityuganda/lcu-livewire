@@ -8,6 +8,7 @@ class Form extends Component
 {
     public function render()
     {
-        return view('livewire.admin.posts.form');
+        return view('livewire.admin.posts.form')
+            ->layout('components.layouts.custom');
     }
 }
