@@ -1,5 +1,10 @@
 @props(['events'])
 <x-layouts.custom title="Forums" description="Browse forums in the Laravel Community Uganda">
+
+    @section('header')
+        <x-core.header>Forums</x-core.header>
+    @endsection
+
     <x-core.container>
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-6">
             <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">

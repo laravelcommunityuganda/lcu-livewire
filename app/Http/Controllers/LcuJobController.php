@@ -57,8 +57,6 @@ class LcuJobController extends Controller
 
     public function update(Request $request, LcuJob $job)
     {
-        $this->authorize('update', $job);
-
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -86,8 +84,6 @@ class LcuJobController extends Controller
 
     public function destroy(LcuJob $job)
     {
-        $this->authorize('delete', $job);
-
         $job->delete();
 
         return redirect()->route('jobs.index');

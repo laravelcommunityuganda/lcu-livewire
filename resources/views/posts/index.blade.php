@@ -1,5 +1,11 @@
 <x-layouts.custom>
+
     <x-slot:title>Posts</x-slot:title>
+
+    @section('header')
+        <x-core.header>Posts</x-core.header>
+    @endsection
+
     <x-core.container>
 
         @auth

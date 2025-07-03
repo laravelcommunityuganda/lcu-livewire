@@ -1,5 +1,8 @@
 <x-layouts.custom>
     <x-slot:title>Jobs</x-slot:title>
+    @section('header')
+        <x-core.header>Jobs</x-core.header>
+    @endsection
     <x-core.container>
 
         @auth

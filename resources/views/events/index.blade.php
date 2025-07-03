@@ -1,9 +1,9 @@
 @props(['events'])
 <x-layouts.custom title="Events" description="Browse upcoming events in the Laravel Community Uganda">
     <x-core.container>
-    <x-slot name="header">
-        <h1 class="text-2xl font-semibold text-gray-900 dark:text-white">Events</h1>
-    </x-slot>
+    @section('header')
+    <x-core.header>Events</x-core.header>
+    @endsection
         <div class="flex justify-between items-center mb-8">
             @auth
                 <a

@@ -1,5 +1,10 @@
 <x-layouts.custom title="Resources" description="Browse and manage resources in the Laravel Community Uganda">
-<x-core.container>
+
+    @section('header')
+        <x-core.header>Resources</x-core.header>
+    @endsection
+
+    <x-core.container>
     @auth
             <div class="flex justify-between items-center mb-8">
                 <a

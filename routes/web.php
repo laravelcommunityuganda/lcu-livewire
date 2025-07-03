@@ -25,13 +25,43 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // ->middleware(['can:admin'])
         ->group(function () {
 
-            Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+            Route::get('/', function () {
+                return view('admin.dashboard');
+            })->name('admin.dashboard');
 
-            Route::resource('users', UserController::class)
-                ->names(['create' => 'admin.users.create', 'index' => 'admin.users.index', 'edit' => 'admin.users.edit', 'store' => 'admin.users.store']);
+            // Users
+            Route::get('/users', \App\Livewire\Admin\Users\Index::class)->name('admin.users.index');
+            Route::get('/users/create', \App\Livewire\Admin\Users\Form::class)->name('admin.users.create');
+            Route::get('/users/{user}/edit', \App\Livewire\Admin\Users\Form::class)->name('admin.users.edit');
+            Route::get('/users/{user}', \App\Livewire\Admin\Users\Show::class)->name('admin.users.show');
 
-            Route::resource('events', EventController::class)
-                ->names(['create' => 'admin.events.create', 'index' => 'admin.events.index', 'edit' => 'admin.events.edit', 'store' => 'admin.events.store']);
+            // // Events
+            Route::get('/events', \App\Livewire\Admin\Events\Index::class)->name('admin.events.index');
+            Route::get('/events/create', \App\Livewire\Admin\Events\Form::class)->name('admin.events.create');
+            Route::get('/events/{event}/edit', \App\Livewire\Admin\Events\Form::class)->name('admin.events.edit');
+
+            // // Forums
+            Route::get('/forums', \App\Livewire\Admin\Forums\Index::class)->name('admin.forums.index');
+            Route::get('/forums/create', \App\Livewire\Admin\Forums\Form::class)->name('admin.forums.create');
+            Route::get('/forums/{forum}/edit', \App\Livewire\Admin\Forums\Form::class)->name('admin.forums.edit');
+
+            // // Posts
+            Route::get('/posts', \App\Livewire\Admin\Posts\Index::class)->name('admin.posts.index');
+            Route::get('/posts/create', \App\Livewire\Admin\Posts\Form::class)->name('admin.posts.create');
+            Route::get('/posts/{post}/edit', \App\Livewire\Admin\Posts\Form::class)->name('admin.posts.edit');
+
+            // // Categories
+            Route::get('/categories', \App\Livewire\Admin\Categories\Index::class)->name('admin.categories.index');
+            Route::get('/categories/create', \App\Livewire\Admin\Categories\Form::class)->name('admin.categories.create');
+            Route::get('/categories/{category}/edit', \App\Livewire\Admin\Categories\Form::class)->name('admin.categories.edit');
+
+            // Route::get('/', action: [DashboardController::class, 'index'])->name('admin.dashboard');
+
+            // Route::resource('users', UserController::class)
+            //     ->names(['create' => 'admin.users.create', 'index' => 'admin.users.index', 'edit' => 'admin.users.edit', 'store' => 'admin.users.store']);
+
+            // Route::resource('events', EventController::class)
+            //     ->names(['create' => 'admin.events.create', 'index' => 'admin.events.index', 'edit' => 'admin.events.edit', 'store' => 'admin.events.store']);
 
 
             Route::resource('resources', ResourceController::class)
@@ -40,11 +70,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::resource('jobs', LcuJobController::class)
                 ->names(['create' => 'admin.jobs.create', 'index' => 'admin.jobs.index', 'edit' => 'admin.jobs.edit', 'store' => 'admin.jobs.store']);
 
-            Route::resource('forum', ForumController::class)
-                ->names(['create' => 'admin.forum.create', 'index' => 'admin.forum.index', 'edit' => 'admin.forum.edit', 'store' => 'admin.forum.store']);
+            // Route::resource('forums', ForumController::class)
+            //     ->names(['create' => 'admin.forums.create', 'index' => 'admin.forums.index', 'edit' => 'admin.forums.edit', 'store' => 'admin.forums.store']);
 
-            Route::resource('posts', PostController::class)
-                ->names(['create' => 'admin.posts.create', 'index' => 'admin.posts.index', 'edit' => 'admin.posts.edit', 'store' => 'admin.posts.store']);
+            // Route::resource('posts', PostController::class)
+            //     ->names(['create' => 'admin.posts.create', 'index' => 'admin.posts.index', 'edit' => 'admin.posts.edit', 'store' => 'admin.posts.store']);
         });
     // Post
     Route::resource('posts', PostController::class)
