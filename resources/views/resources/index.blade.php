@@ -1,5 +1,5 @@
 <x-layouts.custom title="Resources" description="Browse and manage resources in the Laravel Community Uganda">
-
+  <x-slot:title>Resources</x-slot:title>
     @section('header')
         <x-core.header>Resources</x-core.header>
     @endsection

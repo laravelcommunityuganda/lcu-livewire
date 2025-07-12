@@ -10,15 +10,9 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    /**
-     * The active tab in the dashboard.
-     *
-     * @var string
-     */
-    // Default to 'overview' tab
-    public $activeTab = 'overview';
+    public string $activeTab = 'overview';
 
-    public function switchTab($tab)
+    public function switchTab($tab): void
     {
         $this->activeTab = $tab;
     }
