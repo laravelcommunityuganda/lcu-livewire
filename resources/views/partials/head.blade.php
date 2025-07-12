@@ -13,6 +13,3 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 @fluxAppearance
 @livewireStyles
-
-<wireui:scripts />
-<script src="//unpkg.com/alpinejs" defer></script>
