@@ -26,12 +26,16 @@
           <x-core.nav-link href="{{ route('admin.jobs.index') }}" :active="request()->routeIs('admin.jobs.index')">
             Jobs
           </x-core.nav-link>
-          <x-core.nav-link href="{{ route('admin.posts.index') }}" :active="request()->routeIs('admin.posts.index')">
-            Posts
-          </x-core.nav-link>
           <x-core.nav-link href="{{ route('admin.forums.index') }}" :active="request()->routeIs('admin.forums.index')">
             Forums
           </x-core.nav-link>
+          {{-- <x-core.nav-link href="{{ route('admin.threads.index') }}"
+            :active="request()->routeIs('admin.threads.index')">
+            Threads
+          </x-core.nav-link>
+          <x-core.nav-link href="{{ route('admin.posts.index') }}" :active="request()->routeIs('admin.posts.index')">
+            Posts
+          </x-core.nav-link> --}}
           <x-core.nav-link href="{{ route('admin.donations.index') }}"
             :active="request()->routeIs('admin.donations.index')">
             Donations

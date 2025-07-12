@@ -15,3 +15,4 @@
 @livewireStyles
 
 <wireui:scripts />
+<script src="//unpkg.com/alpinejs" defer></script>

@@ -67,6 +67,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
       Route::get('/jobs/{job}', \App\Livewire\Admin\Jobs\Show::class)->name('admin.jobs.show');
 
       //Donations
+      Route::get('/threads', \App\Livewire\Admin\Threads\Index::class)->name('admin.threads.index');
+
       Route::get('/donations', \App\Livewire\Admin\Donations\Index::class)->name('admin.donations.index');
     });
   // Post
