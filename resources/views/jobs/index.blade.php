@@ -87,49 +87,61 @@
                 <ul class="divide-y divide-gray-200 dark:divide-gray-700">
                     @foreach($jobs as $job)
                         <li key="{{ $job->id }}">
-                            <a href="{{ route('jobs.show', $job->id) }}" class="block hover:bg-gray-50 dark:hover:bg-gray-700">
-                                <div class="px-4 py-4 sm:px-6">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center">
+                            <a href="{{ route('jobs.show', $job->id) }}" class="block hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-150">
+                                <div class="px-6 py-5 sm:px-6">
+                                    <div class="flex items-start justify-between">
+                                        <div class="flex items-start space-x-4 flex-1 min-w-0">
                                             @if($job->company_logo)
-                                                <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full" src="{{ asset('storage/'.$job->company_logo) }}" alt="{{ $job->company_name }}">
+                                                <div class="flex-shrink-0">
+                                                    <img class="h-12 w-12 rounded-lg object-cover" src="{{ asset('storage/'.$job->company_logo) }}" alt="{{ $job->company_name }}">
+                                                </div>
+                                            @else
+                                                <div class="flex-shrink-0">
+                                                    <div class="h-12 w-12 rounded-lg bg-gray-200 dark:bg-gray-600 flex items-center justify-center">
+                                                        <svg class="h-6 w-6 text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                                        </svg>
+                                                    </div>
                                                 </div>
                                             @endif
-                                            <div class="ml-4">
-                                                <p class="text-sm font-medium text-indigo-600 dark:text-indigo-400 truncate">
-                                                    {{ $job->title }}
-                                                </p>
-                                                <p class="text-sm text-gray-500 dark:text-gray-400">
-                                                    {{ $job->company_name }}
-                                                </p>
+                                            <div class="flex-1 min-w-0">
+                                                <div class="flex items-start justify-between">
+                                                    <div class="flex-1 min-w-0">
+                                                        <p class="text-lg font-semibold text-gray-900 dark:text-white truncate">
+                                                            {{ $job->title }}
+                                                        </p>
+                                                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                                                            {{ $job->company_name }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="flex-shrink-0 ml-4">
+                                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
+                                                            {{ ucwords(str_replace('-', ' ', $job->employment_type)) }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mt-3 flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+                                                    <div class="flex items-center">
+                                                        <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400 dark:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <span>{{ $job->location }}</span>
+                                                        @if($job->is_remote)
+                                                            <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                                                                Remote
+                                                            </span>
+                                                        @endif
+                                                    </div>
+
+                                                    <div class="flex items-center">
+                                                        <svg class="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400 dark:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <span>Closes {{ $job->expires_at->format('M d, Y') }}</span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="ml-2 flex-shrink-0 flex">
-                                            <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
-                                                {{ str_replace('-', ' ', $job->employment_type) }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="mt-2 sm:flex sm:justify-between">
-                                        <div class="sm:flex">
-                                            <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                                                <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400 dark:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                                                </svg>
-                                                {{ $job->location }}
-                                                @if($job->is_remote)
-                                                    <span class="ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
-                                                        Remote
-                                                    </span>
-                                                @endif
-                                            </p>
-                                        </div>
-                                        <div class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
-                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400 dark:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-                                            </svg>
-                                            Closing on <time datetime="{{ $job->expires_at->format('Y-m-d') }}">{{ $job->expires_at->format('M d, Y') }}</time>
                                         </div>
                                     </div>
                                 </div>
@@ -139,16 +151,16 @@
                 </ul>
             </div>
         @else
-            <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg p-6 text-center">
+            <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg p-8 text-center">
                 <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v2a2 2 0 002 2h2a2 2 0 002-2V8a2 2 0 00-2-2h-2zm-8 0V4" />
                 </svg>
-                <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-white">No jobs found</h3>
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                <h3 class="mt-4 text-lg font-medium text-gray-900 dark:text-white">No jobs found</h3>
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                     @if(request()->has('search') || request('employment_type') !== 'all' || request('is_remote') !== 'all')
-                        Try adjusting your search or filter criteria
+                        Try adjusting your search or filter criteria to find more opportunities.
                     @else
-                        There are currently no job openings. Check back later!
+                        There are currently no job openings available. Check back later for new opportunities!
                     @endif
                 </p>
                 @auth
@@ -163,9 +175,12 @@
                 @endauth
             </div>
         @endif
-        <div class="mt-4">
-            {{ $jobs->links() }}
-        </div>
+
+        @if($jobs->count() > 0)
+            <div class="mt-6">
+                {{ $jobs->links() }}
+            </div>
+        @endif
 
     </x-core.container>
 </x-layouts.custom>
