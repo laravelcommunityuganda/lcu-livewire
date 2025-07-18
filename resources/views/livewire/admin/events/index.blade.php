@@ -18,7 +18,7 @@
 
                     <div class="mb-4 flex justify-between items-center">
                         <div class="w-1/3">
-                            <x-input wire:model.debounce.300ms="search" placeholder="Search events..." />
+                            <x-ui.search-input wire:model.debounce.300ms="search" placeholder="Search events..." />
                         </div>
                         <div class="flex space-x-2">
                             <x-native-select wire:model="perPage">
@@ -141,14 +141,18 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-                                                        {{ $event->type === 'meetup' ? 'bg-blue-100 text-blue-800' : '' }}
-                                                        {{ $event->type === 'workshop' ? 'bg-green-100 text-green-800' : '' }}
-                                                        {{ $event->type === 'conference' ? 'bg-purple-100 text-purple-800' : '' }}
-                                                        {{ $event->type === 'hackathon' ? 'bg-yellow-100 text-yellow-800' : '' }}">
+                                            @php
+                                                $typeVariants = [
+                                                    'meetup' => 'info',
+                                                    'workshop' => 'success',
+                                                    'conference' => 'primary',
+                                                    'hackathon' => 'warning',
+                                                ];
+                                                $variant = $typeVariants[$event->type] ?? 'default';
+                                            @endphp
+                                            <x-ui.badge variant="{{ $variant }}">
                                                 {{ ucfirst($event->type) }}
-                                            </span>
+                                            </x-ui.badge>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $event->start_date->format('M d, Y') }}<br>
@@ -163,11 +167,9 @@
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-                                                        {{ $event->is_published ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                                            <x-ui.badge variant="{{ $event->is_published ? 'success' : 'warning' }}">
                                                 {{ $event->is_published ? 'Published' : 'Draft' }}
-                                            </span>
+                                            </x-ui.badge>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <div class="flex space-x-2">
