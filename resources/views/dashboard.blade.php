@@ -1,34 +1,3 @@
-{{-- <x-layouts.app :title="__('Dashboard')">
-    <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
-        <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-            <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-                <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-            </div>
-        </div>
-        <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
-            <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20" />
-        </div>
-    </div>
-</x-layouts.app> --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
 <x-layouts.app :title="__('Dashboard')">
     <div class=" flex h-full w-full flex-1 flex-col rounded-xl">
         <!-- Main content -->
@@ -36,12 +5,9 @@
             <!-- Top navigation -->
             <header class="bg-white shadow-sm border-b border-gray-200">
                 <div class="flex items-center justify-between px-4 py-3">
-                    {{-- <div class="flex items-center">
-                        <button @click="sidebarOpen = true" class="lg:hidden mr-3">
-                            <i class="fas fa-bars text-gray-600"></i>
-                        </button>
+                    <div class="flex items-center">
                         <h1 class="text-xl font-semibold text-gray-800">Dashboard Overview</h1>
-                    </div> --}}
+                    </div>
 
                     <div class="flex justify-between space-x-4">
                         <!-- Search -->
@@ -58,28 +24,6 @@
                                 <span
                                     class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1">3</span>
                             </button>
-                        </div>
-
-                        <!-- User menu -->
-                        <div class="relatively" x-data="{ open: false }">
-                            <button @click="open = !open"
-                                class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100">
-                                <img src="https://via.placeholder.com/32x32" alt="User"
-                                    class="w-8 h-8 rounded-full">
-                                <span class="hidden sm:block text-sm font-medium text-gray-700">John Doe</span>
-                                <i class="fas fa-chevron-down text-gray-400"></i>
-                            </button>
-
-                            <div x-show="open" @click.away="open = false" x-transition
-                                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                                <hr class="my-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign
-                                    out</a>
-                            </div>
                         </div>
                     </div>
                 </div>
