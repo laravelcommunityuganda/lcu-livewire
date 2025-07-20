@@ -18,13 +18,40 @@
                         </div>
 
                         <!-- Notifications -->
-                        <div class="relative">
-                            <button class="p-2 text-gray-600 hover:text-gray-900">
+                        <div class="relative" id="notification-wrapper">
+                            <!-- Bell Icon -->
+                            <button id="notification-btn"
+                                class="relative p-2 text-gray-600 hover:text-gray-900 focus:outline-none">
                                 <i class="fas fa-bell"></i>
                                 <span
-                                    class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1">3</span>
+                                    class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1.5">3</span>
                             </button>
+
+                            <!-- Dropdown -->
+                            <div id="notification-dropdown"
+                                class="hidden absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                                <div class="p-4 border-b font-semibold text-gray-700">
+                                    Notifications
+                                </div>
+
+                                <ul class="max-h-60 overflow-y-auto divide-y divide-gray-100 text-sm text-gray-600">
+                                    <li class="px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                                        📢 New event: Laravel Meetup!
+                                    </li>
+                                    <li class="px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                                        📢 New user has registered
+                                    </li>
+                                    <li class="px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                                        📢 Your report was approved.
+                                    </li>
+                                </ul>
+
+                                <div class="p-2 text-center border-t">
+                                    <a href="/notifications" class="text-blue-600 hover:underline text-sm">View all</a>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </header>
@@ -192,8 +219,8 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full"
-                                                    src="https://via.placeholder.com/32x32" alt="">
+                                                <img class="h-8 w-8 rounded-full" src="/images/user.png"
+                                                    alt="">
                                                 <div class="ml-3">
                                                     <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
                                                     <div class="text-sm text-gray-500">sarah@example.com</div>
@@ -212,8 +239,8 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full"
-                                                    src="https://via.placeholder.com/32x32" alt="">
+                                                <img class="h-8 w-8 rounded-full" src="/images/user.png"
+                                                    alt="">
                                                 <div class="ml-3">
                                                     <div class="text-sm font-medium text-gray-900">Mike Chen</div>
                                                     <div class="text-sm text-gray-500">mike@example.com</div>
@@ -232,8 +259,8 @@
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
-                                                <img class="h-8 w-8 rounded-full"
-                                                    src="https://via.placeholder.com/32x32" alt="">
+                                                <img class="h-8 w-8 rounded-full" src="/images/user.png"
+                                                    alt="">
                                                 <div class="ml-3">
                                                     <div class="text-sm font-medium text-gray-900">Emma Davis</div>
                                                     <div class="text-sm text-gray-500">emma@example.com</div>
@@ -366,6 +393,7 @@
         <!-- Toast notifications container -->
         <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2">
             <!-- Toast notifications will be dynamically added here -->
+
         </div>
 
         <script>
@@ -431,13 +459,10 @@
                 });
             });
 
-            // Handle responsive sidebar for larger screens
-            window.addEventListener('resize', function() {
-                if (window.innerWidth >= 1024) {
-                    Alpine.store('sidebar', {
-                        open: false
-                    });
-                }
+            // Notification dropdown toggle
+            document.getElementById('notification-btn').addEventListener('click', function() {
+                const dropdown = document.getElementById('notification-dropdown');
+                dropdown.classList.toggle('hidden');
             });
         </script>
     </div>
