@@ -1,5 +1,4 @@
 name: tests
-
 on:
   push:
     branches:
@@ -9,46 +8,95 @@ on:
     branches:
       - develop
       - main
-
 jobs:
   ci:
     runs-on: ubuntu-latest
     environment: Testing
-
+    
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: testing
+          MYSQL_USER: sail
+          MYSQL_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+      
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.4
           tools: composer:v2
           coverage: xdebug
-
+          extensions: pdo, pdo_mysql, mysql
+      
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'npm'
-
+      
       - name: Install Node Dependencies
         run: npm i
-
+      
       - name: Add Flux Credentials Loaded From ENV
         run: composer config http-basic.composer.fluxui.dev "${{ secrets.FLUX_USERNAME }}" "${{ secrets.FLUX_LICENSE_KEY }}"
-
+      
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
-
+      
       - name: Copy Environment File
         run: cp .env.example .env
-
+      
+      - name: Configure Environment for Testing
+        run: |
+          php artisan config:clear
+          echo "APP_ENV=testing" >> .env
+          echo "DB_CONNECTION=mysql" >> .env
+          echo "DB_HOST=127.0.0.1" >> .env
+          echo "DB_PORT=3306" >> .env
+          echo "DB_DATABASE=testing" >> .env
+          echo "DB_USERNAME=sail" >> .env
+          echo "DB_PASSWORD=password" >> .env
+          echo "REDIS_HOST=127.0.0.1" >> .env
+          echo "REDIS_PORT=6379" >> .env
+          echo "CACHE_DRIVER=redis" >> .env
+          echo "SESSION_DRIVER=redis" >> .env
+          echo "QUEUE_CONNECTION=redis" >> .env
+      
       - name: Generate Application Key
         run: php artisan key:generate
-
+      
+      - name: Wait for MySQL to be ready
+        run: |
+          until mysqladmin ping -h 127.0.0.1 -P 3306 -u sail -ppassword --silent; do
+            echo 'Waiting for MySQL...'
+            sleep 2
+          done
+          echo 'MySQL is ready!'
+      
+      - name: Run Migrations
+        run: php artisan migrate --force
+      
+      - name: Seed Database (optional)
+        run: php artisan db:seed --force
+        continue-on-error: true
+      
       - name: Build Assets
         run: npm run build
-
+      
       - name: Run Tests
         run: ./vendor/bin/pest
