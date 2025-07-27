@@ -79,9 +79,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::resource('posts', PostController::class)
     ->except(['index', 'show']);
 
-
   Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
     ->name('dashboard');
 });
 
