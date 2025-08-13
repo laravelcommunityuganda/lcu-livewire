@@ -10,16 +10,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckUserPermission
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next, string $permission): Response
-    {
-        if (!Auth::user()->hasPermissionTo(UserPermissionsEnum::from($permission))) {
-            abort(403);
-        }
-        return $next($request);
-    }
+  /**
+   * Handle an incoming request.
+   *
+   * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+   */
+  public function handle(Request $request, Closure $next, string $permission, $guard = null): Response
+  {
+    $authGuard = Auth::guard($guard);
+
+    if ($authGuard->guest()) abort(403);
+
+    $permissions = is_array($permission) ? $permission : explode('|', $permission);
+
+    if (!$authGuard->user()->hasAnyPermission($permissions)) abort(403);
+
+    return $next($request);
+  }
 }

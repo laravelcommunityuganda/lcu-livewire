@@ -10,16 +10,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckUserRole
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next, string $role): Response
-    {
-        if (!Auth::user()->hasRole(UserRolesEnum::from($role))) {
-            abort(403);
-        }
-        return $next($request);
-    }
+  /**
+   * Handle an incoming request.
+   *
+   * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+   */
+  public function handle(Request $request, Closure $next, string $role, $guard = null): Response
+  {
+    $authGuard = Auth::guard($guard);
+
+    if ($authGuard->guest()) abort(403);
+
+    $roles = is_array($role) ? $role : explode('|', $role);
+
+    if (!$authGuard->user()->hasAnyRole($roles)) abort(403);
+
+    return $next($request);
+  }
 }
