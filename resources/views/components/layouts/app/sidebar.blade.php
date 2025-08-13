@@ -20,157 +20,163 @@
       </flux:navlist.group>
     </flux:navlist>
 
+    @if(Auth::user()?->hasAnyRole(['admin', 'super_admin']))
     <flux:navlist.group :heading="__('User Management')" class="grid">
       <flux:navlist.item icon="user-plus" :href="route('admin.users.create')"
-        :current="request()->routeIs('admin.users.create')" wire:navigate>
-        {{ __('Add User') }}
+      :current="request()->routeIs('admin.users.create')" wire:navigate>
+      {{ __('Add User') }}
       </flux:navlist.item>
       <flux:navlist.item icon="user-plus" :href="route('admin.users.index')"
-        :current="request()->routeIs('admin.users.index')" wire:navigate>
-        {{ __('Manage Users') }}
+      :current="request()->routeIs('admin.users.index')" wire:navigate>
+      {{ __('Manage Users') }}
       </flux:navlist.item>
 
       <flux:navlist.item icon="building-library" :href="route('dashboard')"
-        :current="request()->routeIs('departments.*')" wire:navigate>
-        {{ __('Roles & Permissions') }}
+      :current="request()->routeIs('departments.*')" wire:navigate>
+      {{ __('Roles & Permissions') }}
       </flux:navlist.item>
       <flux:navlist.item icon="clipboard-document" :href="route('dashboard')" :current="request()->routeIs('reports.*')"
-        wire:navigate>
-        {{ __('User Activity') }}
+      wire:navigate>
+      {{ __('User Activity') }}
       </flux:navlist.item>
     </flux:navlist.group>
+
     <flux:navlist.group :heading="__('Event Management')" collapsible class="grid">
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Create Event') }}
+      wire:navigate>
+      {{ __('Create Event') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('All Events') }}
+      wire:navigate>
+      {{ __('All Events') }}
       </flux:navlist.item>
 
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Registration') }}
+      wire:navigate>
+      {{ __('Registration') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Event Notifications') }}
+      wire:navigate>
+      {{ __('Event Notifications') }}
       </flux:navlist.item>
     </flux:navlist.group>
+
     <flux:navlist.group :heading="__('Content Management')" collapsible class="grid">
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Blog Posts') }}
+      wire:navigate>
+      {{ __('Blog Posts') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Tutorials') }}
+      wire:navigate>
+      {{ __('Tutorials') }}
       </flux:navlist.item>
 
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('News') }}
+      wire:navigate>
+      {{ __('News') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Resources') }}
+      wire:navigate>
+      {{ __('Resources') }}
       </flux:navlist.item>
     </flux:navlist.group>
 
     <flux:navlist.group :heading="__('Forum Management')" collapsible class="grid">
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Moderate Discussions') }}
+      wire:navigate>
+      {{ __('Moderate Discussions') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Reports') }}
+      wire:navigate>
+      {{ __('Reports') }}
       </flux:navlist.item>
 
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Create Topics') }}
+      wire:navigate>
+      {{ __('Create Topics') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Polls') }}
+      wire:navigate>
+      {{ __('Polls') }}
       </flux:navlist.item>
     </flux:navlist.group>
+
     <flux:navlist.group :heading="__('Feedback & Issues')" collapsible class="grid">
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Review Feedback') }}
+      wire:navigate>
+      {{ __('Review Feedback') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Issue Tracking') }}
+      wire:navigate>
+      {{ __('Issue Tracking') }}
       </flux:navlist.item>
 
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Responses') }}
+      wire:navigate>
+      {{ __('Responses') }}
       </flux:navlist.item>
     </flux:navlist.group>
+
     <flux:navlist.group :heading="__('Analytics & Reports')" collapsible class="grid">
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('User Analytics') }}
+      wire:navigate>
+      {{ __('User Analytics') }}
       </flux:navlist.item>
 
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Event Analytics') }}
+      wire:navigate>
+      {{ __('Event Analytics') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Content Engagement') }}
+      wire:navigate>
+      {{ __('Content Engagement') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Export Reports') }}
+      wire:navigate>
+      {{ __('Export Reports') }}
       </flux:navlist.item>
     </flux:navlist.group>
+
     <flux:navlist.group :heading="__('Sponsorships & Donations')" collapsible class="grid">
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Sponsors') }}
+      wire:navigate>
+      {{ __('Sponsors') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Donations') }}
+      wire:navigate>
+      {{ __('Donations') }}
       </flux:navlist.item>
 
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Approve Content') }}
+      wire:navigate>
+      {{ __('Approve Content') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Financial Reports') }}
+      wire:navigate>
+      {{ __('Financial Reports') }}
       </flux:navlist.item>
     </flux:navlist.group>
+
     <flux:navlist.group :heading="__('Settings')" collapsible class="grid">
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Website Settings') }}
+      wire:navigate>
+      {{ __('Website Settings') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Branding') }}
+      wire:navigate>
+      {{ __('Branding') }}
       </flux:navlist.item>
 
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Social Integrations') }}
+      wire:navigate>
+      {{ __('Social Integrations') }}
       </flux:navlist.item>
       <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-        wire:navigate>
-        {{ __('Payement Gateways') }}
+      wire:navigate>
+      {{ __('Payement Gateways') }}
       </flux:navlist.item>
     </flux:navlist.group>
-
-
+  @endif
     <flux:spacer />
     <flux:navlist variant="outline">
       <flux:navlist.item icon="folder-git-2" href="#" target="_blank">
@@ -185,7 +191,7 @@
         {{ __('Repository') }}
       </flux:navlist.item>
 
-      <flux:navlist.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
+      <flux:navlist.item icon="book-open-text" href="https://laravelcommunityuganda.com/docs/" target="_blank">
         {{ __('Documentation') }}
       </flux:navlist.item>
     </flux:navlist>
