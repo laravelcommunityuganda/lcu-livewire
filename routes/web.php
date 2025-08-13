@@ -26,8 +26,7 @@ Route::get('/help', [HomeController::class, 'help'])
 Route::middleware(['auth', 'verified'])->group(function () {
   //Admin Routes
   Route::prefix('admin')
-    // ->middleware(['can:admin'])
-    ->group(function () {
+    ->middleware(['role:super_admin|admin'])->group(function () {
 
       Route::get('/', \App\Livewire\Admin\Dashboard\Index::class)->name('admin.dashboard');
 
