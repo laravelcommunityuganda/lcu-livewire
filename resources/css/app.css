@@ -1,11 +1,9 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@import '../../vendor/livewire/flux/dist/flux.css';
+@import "../../vendor/livewire/flux/dist/flux.css";
 
-@import '../../vendor/wireui/wireui/ts/global.css';
+@import "../../vendor/wireui/wireui/ts/global.css";
 @source '../../vendor/wireui/wireui';
-
-
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -15,11 +13,11 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-    --color-primary: #FF2D20;
-    --color-secondary: #1E3A8A;
-    --color-accent: #F59E0B;
-    --color-background: #F8FAFC;
-    --color-text: #1F2937;
+    --color-primary: #ff2d20;
+    --color-secondary: #1e3a8a;
+    --color-accent: #f59e0b;
+    --color-background: #f8fafc;
+    --color-text: #1f2937;
 }
 
 /* @layer utilities {
@@ -96,9 +94,10 @@
     }
 } */
 
-
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 
     --color-zinc-50: #fafafa;
     --color-zinc-100: #f5f5f5;
@@ -126,7 +125,6 @@
 }
 
 @layer base {
-
     *,
     ::after,
     ::before,
@@ -153,4 +151,3 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
-z
