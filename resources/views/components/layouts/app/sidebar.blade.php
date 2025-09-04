@@ -42,12 +42,12 @@
     </flux:navlist.group>
 
     <flux:navlist.group :heading="__('Event Management')" collapsible class="grid">
-      <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-      wire:navigate>
+      <flux:navlist.item icon="home" :href="route('admin.events.create')"
+      :current="request()->routeIs('admin.events.create')" wire:navigate>
       {{ __('Create Event') }}
       </flux:navlist.item>
-      <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('students.approved')"
-      wire:navigate>
+      <flux:navlist.item icon="home" :href="route('admin.events.index')"
+      :current="request()->routeIs('admin.events.index')" wire:navigate>
       {{ __('All Events') }}
       </flux:navlist.item>
 

@@ -1,5 +1,5 @@
 <div class="relative inline-block text-left">
-  <x-dropdown class="text-gray-700 dark:text-gray-200 dark:bg-gray-200 size-5">
+  <x-dropdown class="size-5">
 
     <x-slot name="trigger">
       <button class="flex items-center space-x-2 focus:outline-none">

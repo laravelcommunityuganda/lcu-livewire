@@ -8,7 +8,7 @@
 </head>
 
 <body class="font-sans antialiased">
-  <div class="min-h-screen bg-light-gray dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+  <div class="min-h-screen">
     {{-- NavBar --}}
     @hasSection('nav-bar')
     @yield('nav-bar')
