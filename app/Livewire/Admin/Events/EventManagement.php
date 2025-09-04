@@ -8,23 +8,36 @@ use Illuminate\Support\Facades\Log;
 use Livewire\WithPagination;
 class EventManagement extends Component
 {
-        use WithPagination;
-    
+    use WithPagination;
+
     protected $paginationTheme = 'tailwind';
     public $search = '';
-    public $perPage = 10;
+    public $perPage = 16;
+     public $searchActive = false;
+
     protected $queryString = ['search'];
-    public $events;
 
-    public function mount()
+    public function updatingSearch()
     {
-        $this->events = Event::all();
-        // Log::info('EventManagement component mounted. Events loaded: ' . $this->events->toJson());
-
+        // Reset to page 1 when search changes
+        $this->resetPage();
     }
+
+    public function resetSearch()
+    {
+        $this->search = '';
+    }   
 
     public function render()
     {
-        return view('livewire.admin.events.event-management');
+        $events = Event::query()
+            ->when($this->search, function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            })
+            ->paginate($this->perPage);
+
+        return view('livewire.admin.events.event-management', [
+            'events' => $events,
+        ]);
     }
 }

@@ -1,14 +1,80 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col">
         <div class="w-full">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                <!-- Card Header -->
+            <div class="bg-white shadow-lg overflow-hidden">
+                <!-- Card Header
                 <div class="bg-gradient-to-r from-red-500 to-orange-500 px-6 py-4">
                     <h4 class="text-xl font-semibold text-white">Event Management</h4>
-                </div>
+                </div> -->
                 
                 <!-- Card Body -->
                 <div class="p-6">
+                    <div class="w-full">
+                        <div class="mb-0">
+                            <div class="filter-section">
+                                <div class="bg-white p-3 border border-b-gray-200">
+                                    <div class="grid grid-cols-12 gap-6 ">
+                                        <!-- Sex -->
+                                        <div class="col-span-12 sm:col-span-3">
+                                            <!-- <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label> -->
+                                            <select wire:model="selected_gender"
+                                                class="w-full  border-1 border-black bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all duration-200 hover:border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none appearance-none cursor-pointer">
+                                                <option value="">Selec Online/Offline</option>
+                                                <option value="M">Online</option>
+                                                <option value="F">Offline</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Status -->
+                                        <div class="col-span-12 sm:col-span-3">
+                                            <!-- <label class="block text-sm font-medium text-gray-700 mb-2">Status</label> -->
+                                            <select wire:model="selected_status"
+                                                class="w-full border-1 border-black bg-white px-4 py-2 text-sm font-medium text-black transition-all duration-200 hover:border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none appearance-none cursor-pointer">
+                                                <option value="">Select Status</option>
+                                                <option value="present">Active</option>
+                                                <option value="absent">Inactive</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="w-full col-span-6">
+                                            <form wire:submit="">
+                                                <div class="flex">
+                                                    <!-- Input -->
+                                                    <input 
+                                                        type="text" 
+                                                        wire:model="searchTerm" 
+                                                        placeholder="Search by ........." 
+                                                        class="flex-1 border border-black  px-4 py-2 text-sm "
+                                                    >
+
+                                                    <!-- Buttons -->
+                                                    @if ($searchActive)
+                                                        <button 
+                                                            type="button" 
+                                                            wire:click="resetSearch" 
+                                                            class="bg-gray-500 text-white px-4 py-2 border border-gray-300 hover:bg-gray-600 focus:outline-none"
+                                                        >
+                                                            <em class="icon ni ni-cross"></em>
+                                                        </button>
+                                                    @endif
+
+                                                    <button 
+                                                        type="submit" 
+                                                        class="bg-teal-700 text-white px-4 py-2 border border-gray-300 rounded-r-md hover:bg-teal-800 focus:outline-none flex items-center"
+                                                    >
+                                                        <em class="icon ni ni-filter mr-1"></em>
+                                                        Apply
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Table Container -->
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -80,6 +146,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+                            <!-- Pagination Links -->
+                        <div class="mt-4">
+                            {{ $events->links() }}
+                        </div>
                     </div>
 
                     <!-- Mobile-friendly alternative for very small screens -->
