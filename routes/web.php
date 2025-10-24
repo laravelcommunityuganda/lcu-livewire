@@ -11,6 +11,7 @@ use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Livewire\Admin\Events\EventManagement;
 
 // Public routes
 Route::get('/', [HomeController::class, 'index'])
@@ -73,6 +74,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
       Route::get('/threads', \App\Livewire\Admin\Threads\Index::class)->name('admin.threads.index');
 
       Route::get('/donations', \App\Livewire\Admin\Donations\Index::class)->name('admin.donations.index');
+      Route::get('/events/management', \App\Livewire\Admin\Events\EventManagement::class)->name('admin.events.management');
     });
   // Post
   Route::resource('posts', PostController::class)
